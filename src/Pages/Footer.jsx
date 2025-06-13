@@ -2,52 +2,85 @@ import React from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HashLink } from "react-router-hash-link";
 import { MdEmail } from "react-icons/md";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer className="bg-purple-500 text-white py-10 px-8">
-      <div className="grid md:grid-cols-3 mx-auto max-w-3xl gap-8 text-center md:text-left">
+    <footer className="bg-gradient-to-b from-[#1e1b4b] to-[#312e81] text-white py-12 px-8">
+      <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto text-center md:text-left">
         <div>
-          <h3 className="text-2xl font-bold mb-2">Jentah Rehema</h3>
-          <p className="text-2xl font-semibold italic">
+          <h3 className="text-3xl font-bold text-purple-300 mb-2">
+            Jentah Rehema
+          </h3>
+          <p className="text-lg italic text-purple-200">
             Crafting clean and creative UIs
           </p>
         </div>
 
         <div>
-          <h4 className="text-2xl mb-2">Quick Links</h4>
-          <ul>
-            <li className="text-2xl">
-              <HashLink to="/about">About</HashLink>
+          <h4 className="text-2xl font-semibold text-purple-300 mb-3">
+            Quick Links
+          </h4>
+          <ul className="space-y-2 text-purple-100 text-lg">
+            <li>
+              <HashLink smooth to="/#about" className="hover:underline">
+                About
+              </HashLink>
             </li>
-            <li className="text-2xl">
-              <HashLink to="/contact">Contact</HashLink>
+            <li>
+              <HashLink smooth to="/#contact" className="hover:underline">
+                Contact
+              </HashLink>
             </li>
-            <li className="text-2xl">
-              <HashLink to="projects">Projects</HashLink>
+            <li>
+              <HashLink smooth to="/#projects" className="hover:underline">
+                Projects
+              </HashLink>
             </li>
           </ul>
         </div>
 
         <div>
-          <h3 className="m-3 font-bold">Connect</h3>
-          <div className="flex justify-center md:justify-start text-2xl gap-4">
-            <a href="https://github.com/remmy300" target="_blank">
-              <FaGithub className="size-10 " />
+          <h3 className="text-2xl font-semibold text-purple-300 mb-3">
+            Connect
+          </h3>
+          <div className="flex justify-center md:justify-start gap-5">
+            <a
+              href="https://github.com/remmy300"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:scale-110 transition"
+            >
+              <FaGithub size={30} />
             </a>
-            <a href="https://linkedin.com/in/jentah-rehema">
-              <FaLinkedin className="size-10" />
+            <a
+              href="https://linkedin.com/in/jentah-rehema"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:scale-110 transition"
+            >
+              <FaLinkedin size={30} />
             </a>
-            <a href="mailto:jentahrehema7@gmail.com">
-              <MdEmail className="size-10" />
+            <a
+              href="mailto:jentahrehema7@gmail.com"
+              className="hover:scale-110 transition"
+            >
+              <MdEmail size={30} />
             </a>
           </div>
         </div>
       </div>
 
-      <div className="mt-4 text-center text-md text-gray-200">
-        @ {new Date().getFullYear()} Jentah Rehema . All rights reserved
-      </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        className="mt-8 text-center text-sm text-purple-200"
+      >
+        © {new Date().getFullYear()}{" "}
+        <span className="font-bold text-purple-300">Jentah Rehema</span>. All
+        rights reserved.
+      </motion.div>
     </footer>
   );
 };

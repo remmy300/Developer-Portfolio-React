@@ -1,59 +1,64 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Hamburger from "hamburger-react";
-import { motion, AnimatePresence } from "framer-motion"; // 👈 import motion
+import { motion, AnimatePresence } from "framer-motion";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const menuItems = ["Home", "About", "Projects", "Contact"];
 
   return (
-    <div className="flex justify-between items-center h-20 px-10 sticky top-0 z-50 bg-white shadow-md">
-      <h1 className="text-4xl font-bold italic text-purple-700 text-center">
-        My Portfolio
-      </h1>
+    <header className="sticky top-0 z-50 bg-[#1e1b4b]/90 backdrop-blur-md text-white shadow-md px-6 md:px-10">
+      <div className="flex justify-between items-center h-20">
+        <h1 className="text-3xl md:text-4xl font-extrabold italic text-purple-300">
+          Jentah.dev
+        </h1>
 
-      {/* Desktop Nav */}
-      <nav className="hidden lg:flex gap-7 text-2xl">
-        {menuItems.map((item) => (
-          <NavLink
-            key={item}
-            to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-            className={({ isActive }) =>
-              `hover:underline ${isActive ? "text-purple-700 font-bold" : ""}`
-            }
-          >
-            {item}
-          </NavLink>
-        ))}
-      </nav>
+        <nav className="hidden lg:flex gap-8 text-lg font-medium">
+          {menuItems.map((item) => (
+            <NavLink
+              key={item}
+              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+              className={({ isActive }) =>
+                `hover:text-purple-400 transition ${
+                  isActive ? "text-purple-300 underline" : ""
+                }`
+              }
+            >
+              {item}
+            </NavLink>
+          ))}
+        </nav>
 
-      {/* Hamburger Button */}
-      <div className="lg:hidden">
-        <Hamburger toggled={isOpen} size={24} toggle={setIsOpen} />
+        <div className="lg:hidden">
+          <Hamburger
+            toggled={isOpen}
+            toggle={setIsOpen}
+            size={24}
+            color="#fff"
+          />
+        </div>
       </div>
 
-      {/* Animated Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="absolute top-20 right-0 w-1/2 bg-white shadow-lg flex flex-col items-center py-5 gap-5 text-xl lg:hidden"
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+            className="lg:hidden flex flex-col gap-5 py-6 text-lg font-medium bg-[#1e1b4b] shadow-md rounded-b-xl"
           >
             {menuItems.map((item) => (
               <NavLink
                 key={item}
                 to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
                 className={({ isActive }) =>
-                  `hover:underline ${
-                    isActive ? "text-purple-700 font-bold" : ""
+                  `text-center hover:text-purple-400 transition ${
+                    isActive ? "text-purple-300 underline" : ""
                   }`
                 }
-                onClick={() => setIsOpen(false)} // close on click
+                onClick={() => setIsOpen(false)}
               >
                 {item}
               </NavLink>
@@ -61,7 +66,7 @@ const Header = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </header>
   );
 };
 
