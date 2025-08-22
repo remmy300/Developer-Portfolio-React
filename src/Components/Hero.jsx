@@ -2,11 +2,6 @@ import { motion } from "framer-motion";
 import { FaArrowRight, FaGithub, FaLinkedin, FaDownload } from "react-icons/fa";
 
 const Hero = () => {
-  const handleDownloadResume = () => {
-    // This would trigger your resume download functionality
-    console.log("Download resume");
-  };
-
   return (
     <section className="relative min-h-screen flex flex-col justify-center items-center px-6 text-center overflow-hidden ">
       <div className="relative z-10 max-w-4xl mx-auto">
@@ -63,7 +58,7 @@ const Hero = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="#projects"
-            className="bg-slate-700 hover:bg-slate-600 border border-slate-600 text-purple-300 font-medium py-3 px-8 rounded-full shadow-lg transition-all flex items-center gap-2"
+            className="bg-slate-700 hover:bg-slate-600 border border-slate-600 text-slate-200 font-medium py-3 px-8 rounded-full shadow-lg transition-all flex items-center gap-2"
           >
             View My Work
             <FaArrowRight className="text-sm" />
@@ -72,18 +67,19 @@ const Hero = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={handleDownloadResume}
-            className="bg-slate-700 hover:bg-slate-600 border border-slate-600 text-purple-300 font-medium py-3 px-8 rounded-full shadow-lg transition-all flex items-center gap-2"
+            className="bg-slate-700 hover:bg-slate-600 border border-slate-600 text-slate-200 font-medium py-3 px-8 rounded-full shadow-lg transition-all "
           >
-            Download CV
-            <FaDownload className="text-sm" />
+            <a href="resume.pdf" download className="flex items-center gap-2">
+              Download CV
+              <FaDownload className="text-sm" />
+            </a>
           </motion.button>
 
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="mailto:jentahrehema7@gmail.com"
-            className="bg-slate-700 hover:bg-slate-600 border border-slate-600  text-purple-300  font-medium py-3 px-8 rounded-full transition-all"
+            className="bg-slate-700 hover:bg-slate-600 border border-slate-600  text-slate-200  font-medium py-3 px-8 rounded-full transition-all"
           >
             Let's Talk
           </motion.a>
@@ -106,7 +102,7 @@ const Hero = () => {
           </motion.a>
 
           <motion.a
-            href="https://linkedin.com/in/jentahrehema"
+            href="https://www.linkedin.com/in/jentah-rehema-a48a762a8/"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ y: -5 }}

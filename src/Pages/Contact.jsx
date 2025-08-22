@@ -61,7 +61,7 @@ const Contact = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Let's Work Together
           </h2>
-          <p className="text-lg text-purple-200 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-100 max-w-2xl mx-auto">
             Have a project in mind or just want to say hello? Feel free to reach
             out!
           </p>
@@ -70,12 +70,12 @@ const Contact = () => {
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Contact Form */}
           <motion.div
-            className="bg-white/5 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/10"
+            className="bg-slate-800/50 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/10"
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h3 className="text-2xl font-bold mb-6 text-purple-300">
+            <h3 className="text-2xl font-bold mb-6 text-slate-100">
               Send me a message
             </h3>
 
@@ -92,7 +92,7 @@ const Contact = () => {
                 <div key={item.field} className="relative">
                   <label
                     htmlFor={item.field}
-                    className="block mb-2 font-medium text-purple-200"
+                    className="block mb-2 font-medium text-slate-100"
                   >
                     {item.label}
                   </label>
@@ -103,7 +103,7 @@ const Contact = () => {
                     value={formData[item.field]}
                     onChange={handleInputChange}
                     placeholder={item.label}
-                    className="w-full p-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
+                    className="w-full p-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400   focus:border-transparent transition"
                     required={item.field !== "phone"}
                   />
                 </div>
@@ -112,7 +112,7 @@ const Contact = () => {
               <div className="relative">
                 <label
                   htmlFor="message"
-                  className="block mb-2 font-medium text-purple-200"
+                  className="block mb-2 font-medium text-slate-100"
                 >
                   Your Message
                 </label>
@@ -123,7 +123,7 @@ const Contact = () => {
                   onChange={handleInputChange}
                   rows="5"
                   placeholder="Tell me about your project..."
-                  className="w-full p-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
+                  className="w-full p-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:border-transparent transition"
                   required
                 />
               </div>
@@ -133,7 +133,7 @@ const Contact = () => {
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-4 px-6 bg-gradient-to-r from-purple-500 to-indigo-600 text-white text-lg font-semibold rounded-lg flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-purple-500/30 transition"
+                className="w-full py-4 px-6 bg-slate-600 text-white text-lg font-semibold rounded-lg flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-slate-500/30 transition"
               >
                 {isSubmitting ? (
                   <>Sending...</>
@@ -153,12 +153,12 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="bg-white/5 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/10">
-              <h3 className="text-2xl font-bold mb-6 text-purple-300">
+            <div className="bg-slate-800/50 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/10">
+              <h3 className="text-2xl font-bold mb-6 text-slate-100">
                 Contact Info
               </h3>
 
-              <div className="space-y-6">
+              <div className="space-y-6 text-slate-100">
                 {[
                   {
                     icon: FaEnvelope,
@@ -174,17 +174,17 @@ const Contact = () => {
                 ].map((item, index) => (
                   <motion.div
                     key={index}
-                    className="flex items-center gap-4 text-purple-100 group"
+                    className="flex items-center gap-4 text-slate-100 group"
                     whileHover={{ x: 5 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <div className="p-3 bg-purple-500/20 rounded-lg group-hover:bg-purple-500/30 transition">
-                      <item.icon className="text-xl text-purple-400" />
+                    <div className="p-3 bg-slate-500/20 rounded-lg group-hover:bg-slate-500/30 transition">
+                      <item.icon className="text-xl text-slate-400" />
                     </div>
                     {item.href ? (
                       <a
                         href={item.href}
-                        className="hover:text-purple-300 transition"
+                        className="hover:text-slate-300 transition"
                       >
                         {item.text}
                       </a>
@@ -196,10 +196,8 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/10">
-              <h3 className="text-2xl font-bold mb-6 text-purple-300">
-                Follow Me
-              </h3>
+            <div className="bg- backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/10">
+              <h3 className="text-2xl font-bold mb-6 text-sl-300">Follow Me</h3>
               <div className="flex gap-4">
                 {[
                   { icon: FaLinkedin, href: "#", color: "hover:text-blue-400" },
@@ -227,7 +225,7 @@ const Contact = () => {
               <a
                 href="/resume.pdf"
                 download
-                className="inline-flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-lg text-lg font-medium hover:shadow-lg hover:shadow-purple-500/30 transition"
+                className="inline-flex items-center bg-slate-700 gap-3 px-6 py-4  text-white rounded-lg text-lg font-medium hover:shadow-lg  transition"
               >
                 <FaFileDownload /> Download Resume
               </a>

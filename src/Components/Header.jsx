@@ -8,7 +8,7 @@ const Header = () => {
   const menuItems = ["Home", "About", "Projects", "Contact"];
 
   return (
-    <header className="sticky top-0 z-50 bg-[#1e1b4b]/90 backdrop-blur-md text-white shadow-md px-6 md:px-10">
+    <header className="sticky top-0 z-50 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 backdrop-blur-md text-white shadow-md px-6 md:px-10">
       <div className="flex justify-between items-center h-20">
         <h1 className="text-3xl md:text-4xl font-extrabold italic text-purple-300">
           Jentah.dev
