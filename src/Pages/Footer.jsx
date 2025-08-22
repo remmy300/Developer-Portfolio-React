@@ -6,7 +6,9 @@ import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-b from-[#1e1b4b] to-[#312e81] text-white py-12 px-8">
+    <footer className=" text-white py-12 px-8">
+      {/* Animated background elements */}
+
       <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto text-center md:text-left">
         <div>
           <h3 className="text-3xl font-bold text-purple-300 mb-2">

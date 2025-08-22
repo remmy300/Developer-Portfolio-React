@@ -5,6 +5,10 @@ import {
   FaEnvelope,
   FaPhone,
   FaMapMarkerAlt,
+  FaLinkedin,
+  FaGithub,
+  FaTwitter,
+  FaPaperPlane,
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-hot-toast";
@@ -16,6 +20,7 @@ const Contact = () => {
     phone: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e) => {
     const { value, name } = e.target;
@@ -24,6 +29,7 @@ const Contact = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     emailjs
       .send(
@@ -36,115 +42,198 @@ const Contact = () => {
         toast.success("Message sent successfully!");
         setFormData({ name: "", email: "", phone: "", message: "" });
       })
-      .catch(() => toast.error("Failed to send message."));
+      .catch(() => toast.error("Failed to send message."))
+      .finally(() => setIsSubmitting(false));
   };
 
   return (
     <section
       id="contact"
-      className="min-h-screen py-20 px-6 bg-gradient-to-b from-[#1e1b4b] to-[#312e81] text-white"
+      className="relative min-h-screen py-20 px-6  text-white overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
-        <div>
-          <motion.h1
-            className="text-5xl font-bold mb-8 text-purple-300"
-            initial={{ opacity: 0, y: -40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Get in Touch
-          </motion.h1>
-
-          <form onSubmit={handleFormSubmit} className="space-y-6 text-left">
-            {["name", "email", "phone"].map((field) => (
-              <div key={field}>
-                <label
-                  htmlFor={field}
-                  className="mb-1 font-medium text-purple-200 capitalize"
-                >
-                  {field}
-                </label>
-                <input
-                  type={
-                    field === "email"
-                      ? "email"
-                      : field === "phone"
-                      ? "tel"
-                      : "text"
-                  }
-                  id={field}
-                  name={field}
-                  value={formData[field]}
-                  onChange={handleInputChange}
-                  placeholder={`Your ${field}`}
-                  className="w-full p-3 rounded-md bg-white/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                  required={field !== "phone"}
-                />
-              </div>
-            ))}
-
-            <div>
-              <label
-                htmlFor="message"
-                className="mb-1 font-medium text-purple-200"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                rows="5"
-                placeholder="Type your message here..."
-                className="w-full p-3 rounded-md bg-white/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                required
-              />
-            </div>
-
-            <motion.button
-              type="submit"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-full py-3 px-6 bg-white/10 text-white text-lg font-semibold rounded-md hover:bg-purple-400 transition"
-            >
-              Send Message
-            </motion.button>
-          </form>
-
-          <div className="mt-8 text-center">
-            <a
-              href="/resume.pdf"
-              download
-              className="inline-flex items-center px-6 py-3 bg-white/10 text-white rounded-lg text-lg hover:bg-purple-400 transition"
-            >
-              <FaFileDownload className="mr-3" /> Download Resume
-            </a>
-          </div>
-        </div>
-
+      <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
-          className="bg-white/10 rounded-2xl shadow-xl p-8 space-y-6 text-left text-purple-100"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl font-bold text-purple-300 mb-4">
-            Contact Info
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Let's Work Together
           </h2>
-          <div className="flex items-center gap-4">
-            <FaEnvelope className="text-xl text-purple-400" />
-            <span>jentahrehema7@gmail.com</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <FaPhone className="text-xl text-purple-400" />
-            <span>+254745577819</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <FaMapMarkerAlt className="text-xl text-purple-400" />
-            <span>Nairobi, Kenya</span>
-          </div>
+          <p className="text-lg text-purple-200 max-w-2xl mx-auto">
+            Have a project in mind or just want to say hello? Feel free to reach
+            out!
+          </p>
         </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          {/* Contact Form */}
+          <motion.div
+            className="bg-white/5 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/10"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h3 className="text-2xl font-bold mb-6 text-purple-300">
+              Send me a message
+            </h3>
+
+            <form onSubmit={handleFormSubmit} className="space-y-6">
+              {[
+                { field: "name", type: "text", label: "Your Name" },
+                { field: "email", type: "email", label: "Email Address" },
+                {
+                  field: "phone",
+                  type: "tel",
+                  label: "Phone Number (Optional)",
+                },
+              ].map((item) => (
+                <div key={item.field} className="relative">
+                  <label
+                    htmlFor={item.field}
+                    className="block mb-2 font-medium text-purple-200"
+                  >
+                    {item.label}
+                  </label>
+                  <input
+                    type={item.type}
+                    id={item.field}
+                    name={item.field}
+                    value={formData[item.field]}
+                    onChange={handleInputChange}
+                    placeholder={item.label}
+                    className="w-full p-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
+                    required={item.field !== "phone"}
+                  />
+                </div>
+              ))}
+
+              <div className="relative">
+                <label
+                  htmlFor="message"
+                  className="block mb-2 font-medium text-purple-200"
+                >
+                  Your Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows="5"
+                  placeholder="Tell me about your project..."
+                  className="w-full p-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
+                  required
+                />
+              </div>
+
+              <motion.button
+                type="submit"
+                disabled={isSubmitting}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full py-4 px-6 bg-gradient-to-r from-purple-500 to-indigo-600 text-white text-lg font-semibold rounded-lg flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-purple-500/30 transition"
+              >
+                {isSubmitting ? (
+                  <>Sending...</>
+                ) : (
+                  <>
+                    Send Message <FaPaperPlane className="text-sm" />
+                  </>
+                )}
+              </motion.button>
+            </form>
+          </motion.div>
+
+          {/* Contact Information */}
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <div className="bg-white/5 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/10">
+              <h3 className="text-2xl font-bold mb-6 text-purple-300">
+                Contact Info
+              </h3>
+
+              <div className="space-y-6">
+                {[
+                  {
+                    icon: FaEnvelope,
+                    text: "jentahrehema7@gmail.com",
+                    href: "mailto:jentahrehema7@gmail.com",
+                  },
+                  {
+                    icon: FaPhone,
+                    text: "+254745577819",
+                    href: "tel:+254745577819",
+                  },
+                  { icon: FaMapMarkerAlt, text: "Nairobi, Kenya" },
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    className="flex items-center gap-4 text-purple-100 group"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="p-3 bg-purple-500/20 rounded-lg group-hover:bg-purple-500/30 transition">
+                      <item.icon className="text-xl text-purple-400" />
+                    </div>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        className="hover:text-purple-300 transition"
+                      >
+                        {item.text}
+                      </a>
+                    ) : (
+                      <span>{item.text}</span>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/10">
+              <h3 className="text-2xl font-bold mb-6 text-purple-300">
+                Follow Me
+              </h3>
+              <div className="flex gap-4">
+                {[
+                  { icon: FaLinkedin, href: "#", color: "hover:text-blue-400" },
+                  { icon: FaGithub, href: "#", color: "hover:text-gray-300" },
+                  { icon: FaTwitter, href: "#", color: "hover:text-blue-400" },
+                ].map((item, index) => (
+                  <motion.a
+                    key={index}
+                    href={item.href}
+                    className={`p-3 bg-white/10 rounded-lg text-xl ${item.color} transition`}
+                    whileHover={{ y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <item.icon />
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+
+            <motion.div
+              className="text-center"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <a
+                href="/resume.pdf"
+                download
+                className="inline-flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-lg text-lg font-medium hover:shadow-lg hover:shadow-purple-500/30 transition"
+              >
+                <FaFileDownload /> Download Resume
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
